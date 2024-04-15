@@ -1,0 +1,60 @@
+# Project 2
+
+Project Overview:
+-----------------------------------
+What is the project about?
+
+The purpose of this project is to get familiar with syscalls and locking. This project consists of a Binary Search Tree of Mailboxes. Mailbox can be addes, deleted, and searched. Each mailbox
+has a FIFO queue of message that can be queued and dequeued.
+
+Project Objective:
+-----------------------------------
+Create system calls that can edit the BST through global variables through the kernel. The locks must be implemented to protect data from being used simeutaneously.
+
+Contact:
+-----------------------------------
+If this means for a student in help, I would go to discord to look through messages because peers will often have the same errors or be willing to help. If this means grader who needs help with
+project, my discord is michaeld.
+
+Setup:
+-----------------------------------
+- All system calls and proj2.c should be in /usr/src/project2/project2
+- gcc proj2_test.c -o name
+- ./name
+-have a window for sudo dmesg because all the kernel messages go there
+
+Kernel Modifications:
+-----------------------------------
+# System Calls
+-mailbox_init: Initializes BST by creating root and lock 
+-mailbox_shutdown: Removes every mailbox from tree including root
+-mailbox_create: adds mailbox to tree
+-mailbox_send: adds message to mailbox
+-mailbox_recv: removes oldest message from mailbox
+-mailbox_delete: deletes message from mailbox
+-message_count: counts number of messages in mailbox
+-message_length: counts length of oldest message in mailbox
+-mailbox_search: searches if mailbox id is in tree
+-mailbox_next_id: returns next mailbox id added
+-print_tree: prints mailboxes in tree
+-mailbox_lock: prints if locking occured
+-mailbox_max: returns max id in tree
+-mailbox_min: returns min id in tree
+# System Calls
+
+Testing:
+-----------------------------------
+Instead of making a ton of test files, I made one test file that acts as a user input program. Gives a menu of commands you do. As you do commands, it tells you if a test passes. I used
+this strategy because it was very time efficient and user friendly. I could easily tell if something wasnt working especially edge cases by telling the command to do something. I could
+a lot more edge cases this way. Just follow the menu to use the test program. Each case represents a system call. It is important because you can test so many different input for each test
+case. Each test case is important because it shows  the functionality of each added system call.
+
+Troubleshooting:
+-----------------------------------
+-Error 2, Makefile(1607): My worst nightmare, this error does not give much information, but it most likely means a problem in one of the system calls files. It is usually a type or something
+was forgotten like asm linkage, changing a function name, kernel name taken, etc.
+
+References:
+-----------------------------------
+https://www.youtube.com/watch?v=nlHIuG3RQ0g
+https://www.youtube.com/watch?v=Kn6D7sH7Fts
